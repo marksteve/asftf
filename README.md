@@ -1,4 +1,4 @@
-# A Sip off the Flask
+# A Sip from the Flask
 
 A hands-on introduction to the Python web microframework, Flask
 
