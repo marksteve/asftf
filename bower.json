@@ -1,0 +1,21 @@
+{
+  "name": "asotf",
+  "version": "0.0.0",
+  "homepage": "https://github.com/marksteve/asotf",
+  "authors": [
+    "Mark Steve Samson <hello@marksteve.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "prism": "gh-pages"
+  }
+}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block css %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='bower_components/prism/themes/prism.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='bower_components/prism/themes/prism-coy.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h1>
+      <a href="/">A Sip off the Flask</a>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6 language-python">
+      <h2>{{ title }}</h2>
+      {% block slide %}{% endblock %}
+    </div>
+    <div class="col-md-6">
+      <h2>Output</h2>
+      <iframe src="{{ demo_url }}" frameborder=0" width="100%"></iframe>
+    </div>
+  </div>
+  <hr>
+  <ul class="pager">
+    {% if prev_url %}<li class="prev"><a href="{{ prev_url }}">&larr; Prev</a></li>{% endif %}
+    {% if next_url %}<li class="next"><a href="{{ next_url }}">Next &rarr;</a></li>{% endif %}
+  </ul>
+</div>
+{% endblock %}
+
+{% block js %}
+{{ super() }}
+<script src="{{ url_for('static', filename='bower_components/prism/components/prism-core.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bower_components/prism/components/prism-python.min.js') }}"></script>
+{% endblock %}

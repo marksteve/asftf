@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>A Sip off the Flask</h1>
+        <p>A hands-on introduction to the Python web microframework, Flask</p>
+        <p>
+          <a href="{{ url_for('slides', n=1) }}" class="btn btn-primary btn-lg">
+            Take a sip
+          </a>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h2>Index</h2>
+        <ol>
+        {% for title in slide_titles %}
+          <li><a href="{{ url_for('slides', n=loop.index) }}">{{ title }}</a></li>
+        {% endfor %}
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h2>What is Flask?</h2>
+  <p>From the <a href="http://flask.pocoo.org">main website</a>:</p>
+  <blockquote>
+    Flask is a microframework for Python based on
+    Werkzeug, Jinja 2 and good intentions.
+  </blockquote>
+  <h2>Installing Flask</h2>
+  <p>WIP</p>
+  <hr>
+  <p>
+    <em>
+      <small>
+        Prepared by
+        <a href="http://marksteve.com">Mark Steve Samson</a>
+        for a workshop held on
+        <a href="http://pizzapy.ph">Pizzapy</a>'s
+        first anniversary
+        <br>
+        Inspired by
+        <a href="https://twitter.com/mmcgrana">Mark McGranaghan</a>'s
+        <a href="http://gobyexample.com">Go By Example</a>
+        <br>
+        <a href="https://github.com/marksteve/asotf">Source in GitHub</a>
+        &mdash;
+        <a href="https://github.com/marksteve/asotf/issues">Feedback</a>
+        &mdash;
+        <a href="http://marksteve.mit-license.org">License</a>
+      </small>
+    </em>
+  </p>
+</div>
+{% endblock %}
