@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}A Sip off the Flask - {{ title }}{% endblock %}
+
 {% block css %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='bower_components/prism/themes/prism.css') }}">
