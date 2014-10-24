@@ -27,7 +27,25 @@
     <div class="col-md-6">
       <h2>Output</h2>
       {% if container %}
-        <iframe src="{{ container_url }}" frameborder=0" width="100%"></iframe>
+      <div class="list-group">
+        <div class="list-group-item">
+          <form id="container-form" target="container" action="get">
+          <div class="row">
+            <div class="col-md-10">
+              <input class="form-control" type="text" value="{{ container_url }}" size="40">
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-default btn-sm btn-block">
+                Go
+              </button>
+            </div>
+          </div>
+          </form>
+        </div>
+        <div class="list-group-item">
+          <iframe name="container" src="{{ container_url }}" frameborder=0" width="100%" height="320"></iframe>
+        </div>
+      </div>
       {% else %}
       Not yet running&hellip;
       {% endif %}
@@ -45,4 +63,10 @@
 {{ super() }}
 <script src="{{ url_for('static', filename='bower_components/prism/components/prism-core.min.js') }}"></script>
 <script src="{{ url_for('static', filename='bower_components/prism/components/prism-python.min.js') }}"></script>
+<script>
+  $('#container-form').submit(function() {
+    var $form = $(this);
+    $form.attr('action', $form.find('input[type=text]').val());
+  });
+</script>
 {% endblock %}
