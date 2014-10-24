@@ -1,9 +1,12 @@
 <!doctype html>
 <html>
   <body>
+    {% for message in get_flashed_messages() %}
+    <p>{{ message }}</p>
+    {% endfor %}
     <h1>Login</h1>
     {% if logged_in %}
-    <p>You are logged in as {{ logged_in }}!</p>
+    <p>Hello, {{ logged_in }}</p>
     <p><a href="{{ url_for('logout') }}">Logout</a></p>
     {% else %}
     <form action="" method="post">

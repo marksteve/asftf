@@ -1,5 +1,5 @@
-from flask import (abort, Flask, redirect, render_template, request, session,
-                   url_for)
+from flask import (abort, flash, Flask, redirect, render_template, request,
+                   session, url_for)
 
 app = Flask(__name__)
 
@@ -8,9 +8,13 @@ app.config['SECRET_KEY'] = 'secret'
 @app.route('/', methods=['GET', 'POST'])
 def login():
   if request.method == 'POST':
-    if request.form['password'] != 'password':
-      abort(401)
-    session['logged_in'] = request.form['username']
+    if request.form['password'] == 'password':
+      session['logged_in'] = request.form['username']
+      flash("You are now logged in as {}".format(
+        session['logged_in'],
+      ))
+    else:
+      flash("Incorrect password")
   logged_in = session.get('logged_in')
   return render_template(
     'sessions.html',
