@@ -10,6 +10,7 @@ SLIDES = [
   ('routing', "Routing"),
   ('templates', "Templates"),
   ('http-methods', "HTTP Methods"),
+  ('static', "Static"),
 ]
 
 
