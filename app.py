@@ -13,6 +13,7 @@ SLIDES = [
   ('static', "Static"),
   ('request-data', "Request Data"),
   ('redirect', "Redirect"),
+  ('abort', "Abort"),
 ]
 
 
