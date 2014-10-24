@@ -1,0 +1,13 @@
+<!doctype>
+<html>
+  <body>
+    <h1>Login</h1>
+    {% if logged_in %}
+    <p>You are logged in!</p>
+    {% else %}
+    <form action="" method="post">
+      <button type="submit">Login</button>
+    </form>
+    {% endif %}
+  </body>
+</html>

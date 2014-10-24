@@ -9,6 +9,7 @@ SLIDES = [
   ('hello-world', "Hello, world"),
   ('routing', "Routing"),
   ('templates', "Templates"),
+  ('http-methods', "HTTP Methods"),
 ]
 
 
