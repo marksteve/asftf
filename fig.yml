@@ -4,4 +4,4 @@ app:
     - .:/usr/src/app
     - /var/run/docker.sock:/var/run/docker.sock
   ports:
-    - 5000:5000
+    - 5000
