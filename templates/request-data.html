@@ -1,0 +1,24 @@
+<!doctype>
+<html>
+  <body>
+    <h1>Request Data</h1>
+    <h2>Query Params</h2>
+    <ul>
+    {% for k, v in args.items() %}
+      <li>{{ k }}: {{ v }}</li>
+    {% endfor %}
+    </ul>
+    <h2>Form Data</h2>
+    <ul>
+    {% for k, v in form.items() %}
+      <li>{{ k }}: {{ v }}</li>
+    {% endfor %}
+    </ul>
+    <h2>Test Form</h2>
+    <form action="" method="post">
+      <p><input type="text" name="name" placeholder="Name"></p>
+      <p><input type="text" name="email" placeholder="Email"></p>
+      <p><button type="submit">Submit</button></p>
+    </form>
+  </body>
+</html>
