@@ -25,9 +25,6 @@
       <h3>{{ template_file }}</h3>
       <pre class="language-markup"><code>{{ template }}</code></pre>
       {% endif %}
-      <form action="" method="post">
-        <button type="submit" class="btn btn-primary">Run</button>
-      </form>
     </div>
     <div class="col-md-6">
       <h2>Output</h2>
@@ -52,7 +49,14 @@
         </div>
       </div>
       {% else %}
-      Not yet running&hellip;
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p>Not yet running&hellip;</p>
+          <form action="" method="post">
+            <button type="submit" class="btn btn-primary">Run</button>
+          </form>
+        </div>
+      </div>
       {% endif %}
     </div>
   </div>
