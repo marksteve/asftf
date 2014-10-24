@@ -12,6 +12,7 @@ SLIDES = [
   ('http-methods', "HTTP Methods"),
   ('static', "Static"),
   ('request-data', "Request Data"),
+  ('redirect', "Redirect"),
 ]
 
 
