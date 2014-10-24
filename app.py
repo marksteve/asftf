@@ -40,14 +40,15 @@ def slides(n=1, id=None):
 
   container_name = 'asftf_slide_{}'.format(n)
 
+  if request.args.get('recreate'):
+    dc.remove_container(container_name, force=True)
+
   try:
     container = dc.inspect_container(container_name)
   except docker.errors.APIError:
     container = None
 
-  if request.method == 'POST':
-    if container:
-      dc.remove_container(container_name, force=True)
+  if not container:
     container = dc.create_container(
       'asftf_app',
       command=['python', code_file],
@@ -60,14 +61,11 @@ def slides(n=1, id=None):
       '5000/tcp': None,
     })
 
-  if container:
-    port = dc.port(container, '5000')[0]['HostPort']
-    container_url = "http://{}:{}".format(
-      request.headers["Host"].split(':')[0],
-      port,
-    )
-  else:
-    container_url = None
+  port = dc.port(container, '5000')[0]['HostPort']
+  container_url = "http://{}:{}".format(
+    request.headers["Host"].split(':')[0],
+    port,
+  )
 
   return render_template(
     'slide.html',

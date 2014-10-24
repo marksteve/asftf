@@ -27,7 +27,6 @@
       {% endif %}
     </div>
     <div class="col-md-6">
-      {% if container %}
       <div class="list-group">
         <div class="list-group-item">
           <form id="container-form" target="container" action="get">
@@ -47,16 +46,6 @@
           <iframe name="container" src="{{ container_url }}" frameborder=0" width="100%" height="320"></iframe>
         </div>
       </div>
-      {% else %}
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <p>Demo not yet running&hellip;</p>
-          <form action="" method="post">
-            <button type="submit" class="btn btn-primary">Run</button>
-          </form>
-        </div>
-      </div>
-      {% endif %}
     </div>
   </div>
   <hr>
