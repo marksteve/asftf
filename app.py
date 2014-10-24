@@ -27,7 +27,7 @@ def slides(n=1):
   with open(slide_file) as f:
     code = f.read()
 
-  container_name = 'asftf_{}'.format(n)
+  container_name = 'asftf_slide_{}'.format(n)
 
   try:
     container = dc.inspect_container(container_name)
