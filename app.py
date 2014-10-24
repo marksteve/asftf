@@ -15,6 +15,7 @@ SLIDES = [
   ('redirect', "Redirect"),
   ('abort', "Abort"),
   ('responses', "Responses"),
+  ('sessions', "Sessions"),
 ]
 
 
