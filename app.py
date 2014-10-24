@@ -1,31 +1,41 @@
-import os
-
 import docker
-from flask import Flask, jsonify, render_template, request, url_for
+from flask import Flask, render_template, request, url_for
 
 app = Flask(__name__)
 dc = docker.Client()
 
 
-SLIDE_TITLES = [
-  "Hello, world"
+SLIDES = [
+  ('hello-world', "Hello, world"),
+  ('routing', "Routing"),
+  ('templates', "Templates"),
 ]
 
 
 @app.route('/')
 def index():
-  return render_template('index.html', slide_titles=SLIDE_TITLES)
+  return render_template('index.html', slides=SLIDES)
 
 
-@app.route('/<int:n>', methods=['GET', 'POST'])
-def slides(n=1):
-  prev_url = url_for('slides', n=n - 1) if n > 1 else None
-  next_url = url_for('slides', n=n + 1) if n < len(SLIDE_TITLES) else None
+@app.route('/<int:n>/<id>', methods=['GET', 'POST'])
+def slides(n=1, id=None):
+  prev_url = url_for(
+    'slides', n=n - 1, id=SLIDES[n - 2][0],
+  ) if n > 1 else None
+  next_url = url_for(
+    'slides', n=n + 1, id=SLIDES[n][0],
+  ) if n < len(SLIDES) else None
 
-  slide_file = 'slide_{}.py'.format(n)
-
-  with open(slide_file) as f:
+  code_file = '{}.py'.format(id)
+  with open(code_file) as f:
     code = f.read()
+
+  template_file = 'templates/{}.html'.format(id)
+  try:
+    with open(template_file) as f:
+      template = f.read()
+  except IOError:
+    template = None
 
   container_name = 'asftf_slide_{}'.format(n)
 
@@ -39,7 +49,7 @@ def slides(n=1):
       dc.remove_container(container_name, force=True)
     container = dc.create_container(
       'asftf_app',
-      command=['python', slide_file],
+      command=['python', code_file],
       ports={
         '5000/tcp': {},
       },
@@ -48,7 +58,6 @@ def slides(n=1):
     dc.start(container, port_bindings={
       '5000/tcp': None,
     })
-
 
   if container:
     port = dc.port(container, '5000')[0]['HostPort']
@@ -62,8 +71,11 @@ def slides(n=1):
   return render_template(
     'slide.html',
     n=n,
-    title=SLIDE_TITLES[n - 1],
+    title=SLIDES[n - 1][1],
+    code_file=code_file,
     code=code,
+    template_file=template_file,
+    template=template,
     container=container,
     container_url=container_url,
     prev_url=prev_url,
