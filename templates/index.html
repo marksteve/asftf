@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% block css %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='bower_components/prism/themes/prism.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='bower_components/prism/themes/prism-coy.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="jumbotron">
   <div class="container">
@@ -35,8 +41,29 @@
     <a href="http://jinja.pocoo.org/">Jinja 2</a>
     and good intentions.
   </blockquote>
-  <h2>Installing Flask</h2>
-  <p>WIP</p>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Installing Flask</h2>
+      <pre class="language-bash"><code># Python 2
+pip install virtualenv
+virtualenv asftf
+
+# Python 3.3
+venv asftf
+
+source asftf/bin/activate
+pip install Flask
+</code></pre>
+    </div>
+    <div class="col-md-6">
+      <h3>Run examples on your own</h3>
+      <pre class="language-bash"><code>git clone https://github.com/marksteve/asftf
+cd asftf
+# asftf virtualenv should be activated
+python hello-world.py
+</code></pre>
+    </div>
+  </div>
   <hr>
   <p>
     <em>
@@ -60,4 +87,10 @@
     </em>
   </p>
 </div>
+{% endblock %}
+
+{% block js %}
+{{ super() }}
+<script src="{{ url_for('static', filename='bower_components/prism/components/prism-core.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bower_components/prism/components/prism-bash.min.js') }}"></script>
 {% endblock %}
