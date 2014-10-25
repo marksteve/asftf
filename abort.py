@@ -4,6 +4,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def login():
+  # Abort raises an exception which stops the
+  # processing of the request and returns with
+  # the appropriate error status code
   if (
     request.args.get('username') != 'admin' or
     request.args.get('password') != 'admin'

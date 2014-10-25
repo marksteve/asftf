@@ -4,6 +4,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+  # The `redirect` function is a nice
+  # helper for returning a response
+  # that redirects to a different page
   return redirect(url_for('maintenance'))
 
 @app.route('/maintenance')

@@ -2,8 +2,13 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+# By default, Flask only allows the GET method
+# Set the methods value for the route to enable
+# other methods
 @app.route('/', methods=['GET', 'POST'])
 def login():
+  # You can retrieve the method from
+  # the `request` global
   if request.method == 'POST':
     logged_in = True
   else:
